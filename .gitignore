@@ -1,0 +1,8 @@
+*.aux
+*.log
+*.out
+*.snm
+*.synctex.gz
+*.toc
+__pycache__
+.ipynb_checkpoints
