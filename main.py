@@ -1,3 +1,4 @@
+# Lily Goldman
 import random, time
 import tabulate
 
@@ -46,7 +47,7 @@ def time_sort(sort_fn, mylist):
     return (time.time() - start) * 1000
     ###
 
-def compare_sort(sizes=[100, 200, 400, 800]): #, 1600, 3200, 6400, 12800, 25600, 51200, 102400]):
+def compare_sort(sizes=[100, 200, 400, 800], shuffle=False): #, 1600, 3200, 6400, 12800, 25600, 51200, 102400]):
     """
     Compare the running time of different sorting algorithms.
 
@@ -66,7 +67,8 @@ def compare_sort(sizes=[100, 200, 400, 800]): #, 1600, 3200, 6400, 12800, 25600,
         mylist = list(range(size))
 
         # shuffles list if needed
-        #random.shuffle(mylist)
+        if shuffle:
+            random.shuffle(mylist)
 
         result.append([
             len(mylist),
@@ -86,3 +88,17 @@ def print_results(results):
 
 random.seed()
 # print_results(compare_sort()) # ensure this is commented out when you submit
+
+def compare_timsort(sizes=[1000, 10000, 100000, 1000000], shuffle=False):
+    qsort_random_pivot = lambda a: qsort(a, lambda x: random.choice(x))
+    result = []
+    for size in sizes:
+        mylist = list(range(size))
+        if shuffle:
+            random.shuffle(mylist)
+        result.append([
+            len(mylist),
+            time_sort(qsort_random_pivot, mylist),
+            time_sort(sorted, mylist)
+        ])
+    return result
