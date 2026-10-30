@@ -57,8 +57,8 @@ def compare_sort(sizes=[100, 200, 400, 800]): #, 1600, 3200, 6400, 12800, 25600,
       for each method to run on each value of n
     """
     ### TODO - sorting algorithms for comparison
-    qsort_fixed_pivot = partial(qsort, pivot_fn=lambda a: a[0])
-    qsort_random_pivot = partial(qsort, pivot_fn=lambda a: random.choice(a))
+    qsort_fixed_pivot = lambda a: qsort(a, lambda x: x[0])
+    qsort_random_pivot = lambda a: qsort(a, lambda x: random.choice(x))
     # tim_sort = sorted
     result = []
     for size in sizes:
